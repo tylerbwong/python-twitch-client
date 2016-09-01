@@ -1,4 +1,6 @@
 # python-twitch-client
+[![Build Status](https://travis-ci.org/tylerbwong/python-twitch-client.svg?branch=master)](https://travis-ci.org/tylerbwong/python-twitch-client)
+
 A command line tool used with livestreamer.
 
 ## Requirements
