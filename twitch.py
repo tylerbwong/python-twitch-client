@@ -9,10 +9,7 @@ def is_stream_live(channel):
     response = urllib2.urlopen(url)
     data = json.load(response)
 
-    if data['stream'] == None:
-        return False
-    else:
-        return True
+    return False if data['stream'] == None else True
 
 
 def get_live_followed(user_name):
