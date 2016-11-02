@@ -1,17 +1,20 @@
 # python-twitch-client
 [![Build Status](https://travis-ci.org/tylerbwong/python-twitch-client.svg?branch=master)](https://travis-ci.org/tylerbwong/python-twitch-client)
 
-A command line tool used with livestreamer.
+A command line tool for Twitch that uses the Kraken API used with livestreamer.
 
 ## Requirements
 
-* Python 2.7
-* livestreamer [install](https://github.com/chrippa/livestreamer)
+* [Python 2.7](https://www.python.org/download/releases/2.7/)
+* [livestreamer](https://github.com/chrippa/livestreamer)
+* [Twitch API Client ID](https://blog.twitch.tv/client-id-required-for-kraken-api-calls-afbb8e95f843#.nz4sszgsl)
 
 ## Usage
 
+Make sure your client id is in a .txt file in the same directory.
+
 ```
-python twitch.py
+python twitch.py <input file>.txt
 ```
 
 ## Example

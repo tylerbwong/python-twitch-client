@@ -1,20 +1,22 @@
 import urllib2
+import fileinput
 import json
 import sys
 import os
 
 
-def is_stream_live(channel):
-    url = str('https://api.twitch.tv/kraken/streams/' + channel)
+def is_stream_live(channel, client_id):
+    url = str('https://api.twitch.tv/kraken/streams/' + channel
+        + '?client_id=' + client_id)
     response = urllib2.urlopen(url)
     data = json.load(response)
 
     return False if data['stream'] == None else True
 
 
-def get_live_followed(user_name):
-    url = str('https://api.twitch.tv/kraken/users/' +
-              user_name + '/follows/channels')
+def get_live_followed(user_name, client_id):
+    url = str('https://api.twitch.tv/kraken/users/' + user_name
+        + '/follows/channels' + '?client_id=' + client_id)
 
     try:
         response = urllib2.urlopen(url)
@@ -27,18 +29,25 @@ def get_live_followed(user_name):
     for stream in streams['follows']:
         streamer = stream['channel']['name']
 
-        if (is_stream_live(streamer)):
+        if (is_stream_live(streamer, client_id)):
             live.append(streamer)
 
     return live
 
 
 def main():
+    # read client id from file
+    try:
+        with open(sys.argv[-1], 'r') as clientIdFile:
+            client_id = clientIdFile.read().replace('\n', '')
+    except:
+        exit('Could not read client id. Exiting.')
+
     user_name = raw_input('Enter your username:\n')
 
     # load streams
     print 'Loading streams...'
-    live = get_live_followed(user_name)
+    live = get_live_followed(user_name, client_id)
     if live == None:
         exit('Could not find user. Exiting.')
 
